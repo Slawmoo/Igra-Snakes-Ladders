@@ -7,13 +7,13 @@ int main(void) {
 
 	int cond = 69;
 
-	char* datoteka = "clanovi.bin";
+	//char* datoteka = "clanovi.bin";
 
-	kreiranjeDatoteke(datoteka);
+	//kreiranjeDatoteke(datoteka);
 
 
 	while (cond) {
-		cond = izbornik(datoteka);
+		cond = izbornik(/*datoteka*/);
 	}
 	printf("Zavrsetak programa!");
 
@@ -21,10 +21,15 @@ int main(void) {
 }
 /*
 Cilj igraèa doæi u zadnji kvadrat igraèe ploèe(matrice) u što manje poteza								//RND NUM GEN
+
 ili prije suparnièkog igraèa																			//RND NUM GEN
+
 na ploèi su nasumièno generirane zmije (vraæaju igraèa prema nazad) i ljestve (šalju igraèa naprijed),  //RND NUM GEN + Static Duljine Snak&Ladd
+
 potezi se rade prema nasumièno generiranoj brojci (kocki s 6 strana od 1-6),							//Kockicaa
+
 simulacija igraèe ploèe u konzoli,																		//mozda animacije ili samo teleport igraèa u dijelovima preko polja 
+
 praæenje statistika igraèa,																				//
 																										//brisanje leaderboarda, stats reset
 																										//,pretrazivanje igraca po rednom broju spremljenom u leaderboardu,

@@ -1,18 +1,19 @@
 #define _CRT_SECURE_NO_WARNINGS
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include "Header.h"
 
-int izbornik(const char* const datClanovi) {
+int izbornik(/*const char* const datClanovi*/) {
 
-	printf("_____________________________________\n\n\n");
+	printf("\n\n_____________________________________\n\n\n");
 	printf("SNAKES & LADDDERES: \n\n");
 	printf("_____________________________________\n\n");
 
 	printf("Unesi \"1\": Nova igra (vs AI)\n");
-	printf("Unesi \"2\": Multiplayer \n");
+	/*printf("Unesi \"2\": Multiplayer \n");
 	printf("Unesi \"3\": Leaderboard \n");
-	printf("Unesi \"4\":  \n");
+	printf("Unesi \"4\":  \n");*/
 	printf("Unesi \"5\": IZLAZ IZ IGRE ! \n\n");
 	printf("_____________________________________\n\n");
 
@@ -20,14 +21,44 @@ int izbornik(const char* const datClanovi) {
 
 	scanf("%d", &cond);
 
-	static CLAN* poljeClanova = NULL;
-	static CLAN* pronadeniClan = NULL;
-
 	switch (cond) {
 	case 1://NOVA IGRA
+		ocistiKonzolu();
+		char* pBoard= napraviBoard(); // Kreira matricu 10x10
+	
+		// Generira igraèe na prvo polje
 		
+		//PLAYER_IG p1 = genPlayer();//Stvaranje igraca 
+		//PLAYER_IG p2 = genPlayer();
+		PLAYER_IG p1;
+		PLAYER_IG p2;
+		strcpy(p1.nick, "ssapd");
+		p1.boardPosition = 100;
+		p1.tag = 'X';
+		strcpy(p2.nick, "asldasd");
+		p2.boardPosition = 99;
+		p2.tag = '0';
+		ocistiKonzolu();
+		printf("Player 1:\n\tNick: %s\n\tBoardPos: %d\n\tTag: %c",p1.nick, p1.boardPosition,p1.tag);// Ispis igraca
+		printf("\n\nPlayer 2:\n\tNick: %s\n\tBoardPos: %d\n\tTag: %c", p2.nick, p2.boardPosition, p2.tag);
+		//ispisiBoard(pBoard);
+		printf("\n\n");
+		setPlayers(pBoard,p1,p2); // i print matrice novo nastale
+		
+		printf("\nStisni tipku za dalje...");// Gumb za igranje mini igre
+		//getch();
+		
+		//miniGame();// Mini igra pogaðanje (0-9)
+		
+		free(pBoard);
+
+		// Basic AI za bota
+		// Gumb za bacacnje kocke
+		// Refresh matrice da se vidi promjema nakon bacanja
+		// Randomizira zmije i ljestve
+		// Tumaè znakova ispod matrice za elemente na matrici
 		break;
-	case 2://MULTIPLAYER 2 IRL igraca
+	/*case 2://MULTIPLAYER 2 IRL igraca
 		
 		//exit(EXIT_FAILURE);
 		break;
@@ -51,10 +82,11 @@ int izbornik(const char* const datClanovi) {
 		}
 
 		break;
-
+		*/
 	case 5:
-		cond = izlazIzPrograma(poljeClanova);
+		cond = izlazIzPrograma();
 		break;
+	
 	default:
 		cond = 0;
 	}

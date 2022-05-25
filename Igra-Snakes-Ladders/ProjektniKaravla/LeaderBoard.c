@@ -2,8 +2,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "Header.h"
-
-int izbornik(const char* const datClanovi) {
+/*
+int leaderBoard(const char* const datClanovi) {
 
 	printf("_____________________________________\n\n\n");
 	printf("			LEADERBOARD: \n\n");
@@ -62,3 +62,4 @@ int izbornik(const char* const datClanovi) {
 
 	return cond;
 }
+*/

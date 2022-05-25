@@ -4,9 +4,75 @@
 #include <string.h>
 #include "Header.h"
 
-static int brojClanova = 0;
-static int brojFilmova = 0;
+//static int brojClanova = 0;
 
+char* napraviBoard() {
+	char* board = calloc(101,sizeof(char));
+	for (int i = 0; i < 100; i++)
+	{
+		*(board + i) = '_';
+	}
+	ispisiBoard(board);
+	return board;
+}
+void ispisiBoard(char* board) {
+	printf("\t");
+	for (int i = 1; i < 101; i++)
+	{
+		printf("%c ", *(board + (i-1)));
+		if (i%10==0)
+		{
+			printf("\n\t");
+		}
+	}
+}
+int izlazIzPrograma() {
+
+	//free(board);
+	printf("\nZelite li izaci iz programa ?");
+	printf("\n\nUtipkajte \"y\" ako želite u suprotno utipkajte\"n\"!\n");
+	char potvrda[2] = { '\0' };
+	scanf("%1s", potvrda);
+	if (!strcmp("y", potvrda)) {
+		return 0;
+	}
+	else {
+		return 1;
+	}
+}
+void ocistiKonzolu() {
+	system("cls");
+	printf("\n\n");
+}
+PLAYER_IG genPlayer() {
+	PLAYER_IG p1;
+	printf("\nUnesi Nick:\n");
+	scanf("%24s[^\n]", p1.nick);
+	printf("\nUnesi oznaku za igraca:\n");
+	scanf("%1s[^\n]", &p1.tag);
+	p1.boardPosition = 100;
+	return p1;
+}
+void setPlayers(char* pBoard, PLAYER_IG p1, PLAYER_IG p2) {
+	
+	for (int i = 100; i > 1; i--)
+	{
+		if (i == p1.boardPosition) 
+		{
+			*(pBoard + (i - 1)) = p1.tag;
+		}
+		if (i == p2.boardPosition) 
+		{
+			*(pBoard + (i - 1)) = p2.tag;
+			if (p2.boardPosition == p1.boardPosition) {
+				*(pBoard + (i - 1)) = '&';
+			}
+		}
+	}
+	ispisiBoard(pBoard);
+}
+
+/*
 void kreiranjeDatoteke(const char* const dat) {
 
 	brojClanova = 0;
@@ -62,7 +128,7 @@ void dodajKorisnika(const char* const dat) {
 		printf("Unesite broj podignutih filmova (0-4): \n");
 		scanf("%d", temp.brojPodignutihFilmova);
 	} while (temp.brojPodignutihFilmova < 0 || temp.brojPodignutihFilmova > 4);
-	*/
+	
 	//pomicemo se na kraj datoteke i zapisujemo novog clana tamo
 	fseek(fP, sizeof(CLAN) * brojClanova, SEEK_CUR);
 	fwrite(&temp, sizeof(CLAN), 1, fP);
@@ -152,19 +218,5 @@ void* pretraziClanove(CLAN* const polje) {
 
 	// vracamo NULL u slucaju da ne nademo nijednog clana s tim id
 	return NULL;
-}
+}*/
 
-int izlazIzPrograma(CLAN* poljeClanova) {
-
-	free(poljeClanova);
-	printf("Zelite li izaci iz programa ?");
-	printf("Utipkajte \"da\" ako želite u suprotno utipkajte\"ne\"!\n");
-	char potvrda[3] = { '\0' };
-	scanf("%2s", potvrda);
-	if (!strcmp("da", potvrda)) {
-		return 0;
-	}
-	else {
-		return 1;
-	}
-}
