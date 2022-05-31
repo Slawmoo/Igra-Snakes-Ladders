@@ -12,8 +12,7 @@ int izbornik(/*const char* const datClanovi*/) {
 
 	printf("Unesi \"1\": Nova igra (vs AI)\n");
 	/*printf("Unesi \"2\": Multiplayer \n");
-	printf("Unesi \"3\": Leaderboard \n");
-	printf("Unesi \"4\":  \n");*/
+	printf("Unesi \"3\": Leaderboard \n");*/
 	printf("Unesi \"5\": IZLAZ IZ IGRE ! \n\n");
 	printf("_____________________________________\n\n");
 
@@ -45,11 +44,21 @@ int izbornik(/*const char* const datClanovi*/) {
 		printf("\n\n");
 		setPlayers(pBoard,p1,p2); // i print matrice novo nastale
 		
-		printf("\nStisni tipku za dalje...");// Gumb za igranje mini igre
+		printf("\n\n\nStisni tipku za dalje...");// Gumb za igranje mini igre
 		//getch();
 		
-		//miniGame();// Mini igra pogaðanje (0-9)
-		
+		int rezMini = miniGame();// Mini igra pogadjanje (0-9)
+		if (rezMini == 1)//prvi player dobio game
+		{
+
+		}
+		else if (rezMini == 2)//drugi player dobio game
+		{
+
+		}
+		else {//mini game prekinut
+			
+		}
 		free(pBoard);
 
 		// Basic AI za bota

@@ -1,12 +1,13 @@
 #define _CRT_SECURE_NO_WARNINGS
 #include <stdio.h>
 #include <stdlib.h>
+#include <time.h>
 #include "Header.h"
 
 int main(void) {
 
 	int cond = 69;
-
+	srand((unsigned)time(NULL));
 	//char* datoteka = "clanovi.bin";
 
 	//kreiranjeDatoteke(datoteka);

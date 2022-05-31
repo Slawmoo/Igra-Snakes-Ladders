@@ -1,2 +1,2 @@
-﻿  Izbornik.c
-  ProjektniKaravla.vcxproj -> C:\Users\student\Desktop\Karavla\Igra-Snakes-Ladders\ProjektniKaravla\x64\Debug\ProjektniKaravla.exe
+﻿  func.c
+LINK : fatal error LNK1168: cannot open C:\Users\student\Desktop\RepoM\Igra-Snakes-Ladders\ProjektniKaravla\x64\Debug\ProjektniKaravla.exe for writing

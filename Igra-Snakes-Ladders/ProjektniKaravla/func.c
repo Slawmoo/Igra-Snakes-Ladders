@@ -3,6 +3,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include "Header.h"
+#include <math.h>
 
 //static int brojClanova = 0;
 
@@ -70,6 +71,44 @@ void setPlayers(char* pBoard, PLAYER_IG p1, PLAYER_IG p2) {
 		}
 	}
 	ispisiBoard(pBoard);
+}
+int miniGame() {
+	
+	printf("\n\tMINI GAME\n\tHIGHER LOWER");
+	printf("Izaberi pocetni broj (0-9):\n\n");//ako igrac sluc izabere tocan broj ima 2 bacanja
+	float startNum;
+	scanf("%f", &startNum);
+	ceil(startNum);
+	int izbor[] = { 0 , 1 , 2 , 3 , 4 , 5 , 6 , 7 , 8 , 9};
+	int sicNum = rand() % 10;
+	printf("0, 1, 2, 3, 4, 5, 6, 7, 8, 9");
+	printf("Start broj je: %d", startNum);
+	printf("Za visi broj unesi \"h\" ili \"H\" za nizi \"l\" ili \"L\"");
+	char potvrda[2] = { '\0' };
+	scanf("%1s", potvrda);
+	if (startNum == sicNum) {
+		//player 1 2x bacanja
+		return 1;
+	}
+	else {
+		do {
+			if (strcmp("h", potvrda) || strcmp("H", potvrda)) {
+				return 2;
+			}
+			else if (strcmp("l", potvrda) || strcmp("L", potvrda)) {
+				return 3;
+			}
+			else {
+				printf("Unesena je nepoznata vrijednost pokusaj ponovno...\n\n");
+			}
+		} while ((potvrda != "l") || (potvrda != "L") || (potvrda != "h") || (potvrda != "H"));
+	}/*for (int i = 0; i < 10; i++)
+	{
+		printf("Sicret num: %d\n", sicNum);
+		sicNum = rand() % 10;
+	}*/
+
+	return 0;
 }
 
 /*
