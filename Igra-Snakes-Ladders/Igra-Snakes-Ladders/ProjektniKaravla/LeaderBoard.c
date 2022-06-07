@@ -2,20 +2,21 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "Header.h"
-
-int izbornik(const char* const datClanovi) {
+/*
+int leaderBoard(const char* const datClanovi) {
 
 	printf("_____________________________________\n\n\n");
-	printf("SNAKES & LADDDERES: \n\n");
+	printf("			LEADERBOARD: \n\n");
 	printf("_____________________________________\n\n");
-
-	printf("Unesi \"1\": Nova igra (vs AI)\n");
-	printf("Unesi \"2\": Multiplayer \n");
-	printf("Unesi \"3\": Leaderboard \n");
-	printf("Unesi \"4\":  \n");
-	printf("Unesi \"5\": IZLAZ IZ IGRE ! \n\n");
-	printf("_____________________________________\n\n");
-
+	//			  ________________________________________________________________________
+	//Leaderboard | Ranking | NickIgraca | BrojPobjeda | MinBrojPoteza | NajboljeVrijeme | 
+	//			  ________________________________________________________________________
+	//Leaderboard | Ranking | NickIgraca | BrojPobjeda | MinBrojPoteza | NajboljeVrijeme |
+	//			  ________________________________________________________________________
+	//Leaderboard | Ranking | NickIgraca | BrojPobjeda | MinBrojPoteza | NajboljeVrijeme |
+	//			  ________________________________________________________________________
+	//spremanje u bin ili txt datoteku 
+	
 	int cond = 0;
 
 	scanf("%d", &cond);
@@ -24,22 +25,15 @@ int izbornik(const char* const datClanovi) {
 	static CLAN* pronadeniClan = NULL;
 
 	switch (cond) {
-	case 1:
-		dodajKorisnika(datClanovi);
-		break;
-	case 2:
-		if (poljeClanova != NULL) {
-			free(poljeClanova);
-			poljeClanova = NULL;
-		}
+	case 1://NOVA IGRA
 
-		poljeClanova = (CLAN*)ucitajKorisnike(datClanovi);
-
-		if (poljeClanova == NULL) {
-			exit(EXIT_FAILURE);
-		}
 		break;
-	case 3:
+	case 2://MULTIPLAYER 2 IRL igraca
+
+		//exit(EXIT_FAILURE);
+		break;
+	case 3://LEADERBOARD
+
 		ispisiSveKorisnike(poljeClanova);
 		break;
 	case 4:
@@ -68,3 +62,4 @@ int izbornik(const char* const datClanovi) {
 
 	return cond;
 }
+*/
