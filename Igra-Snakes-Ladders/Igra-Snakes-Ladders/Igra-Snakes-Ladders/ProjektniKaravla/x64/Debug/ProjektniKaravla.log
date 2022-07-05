@@ -1,0 +1,3 @@
+﻿  func.c
+C:\Users\Marko\Desktop\ProgProject\Igra-Snakes-Ladders\Igra-Snakes-Ladders\Igra-Snakes-Ladders\ProjektniKaravla\func.c(128): warning C4715: 'gameLoopv_2': not all control paths return a value
+  ProjektniKaravla.vcxproj -> C:\Users\Marko\Desktop\ProgProject\Igra-Snakes-Ladders\Igra-Snakes-Ladders\Igra-Snakes-Ladders\ProjektniKaravla\x64\Debug\ProjektniKaravla.exe
