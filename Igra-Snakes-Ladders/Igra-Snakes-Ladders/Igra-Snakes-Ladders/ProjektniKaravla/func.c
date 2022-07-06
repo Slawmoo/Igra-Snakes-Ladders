@@ -18,6 +18,7 @@
 int board[BOARDY][BOARDW+1];          // allow for string terminator
 
 
+
 void start_board(void)
 {
 	int y, x,n=9;												   //------------------------------------------
@@ -63,15 +64,16 @@ void start_board(void)
 	printf("\n");
 }
 
-short gameLoopv_2(PLAYER_IG p1, PLAYER_IG* pok1) {//(PLAYER_IG p1, PLAYER_IG p2, PLAYER_IG* pok1, PLAYER_IG* pok2)
-	short win = 1, naRedu = 0;
+short gameLoopv_2(PLAYER_IG p1, PLAYER_IG* pok1, PLAYER_IG p2, PLAYER_IG* pok2, int* polje,int size,int * zaProvjeru,int sizeProv) {//(PLAYER_IG p1, PLAYER_IG p2, PLAYER_IG* pok1, PLAYER_IG* pok2)
+	short win = 1, naRedu = 0;//													ima sve vrijednosti		samo x i y
 	
 	if (pok1->boardPositionX == 9 && pok1->boardPositionY == 9) { //|| pok2->boardPositionX == 10 && pok2->boardPositionY == 10) {
-		return 1;/*
-		else {
-			return 2;
-		}*/
-	}else{
+		return 1;
+	}
+	else if (pok2->boardPositionX == 9 && pok2->boardPositionY == 9){
+		return 2;
+	}
+	else {
 		int kocka;
 		while (win != 0) {
 			if (naRedu == 0) {
@@ -93,30 +95,32 @@ short gameLoopv_2(PLAYER_IG p1, PLAYER_IG* pok1) {//(PLAYER_IG p1, PLAYER_IG p2,
 			}
 			//if (rezMini == 2)//prvi player mini dobio game
 			 {*/
-			kocka = 6;//bacanje();
-			//if ((naRedu + 1) % 2 == 0) {
-			printf("\n\t1p Kocka: %d ", kocka);
-			primjeniKocku(kocka, pok1);
-			//}
-			/*else {
-				printf("\n2p Kocka: %d ", kocka);
-				primjeniKocku(kocka, pok2);
+			kocka = bacanje();
+			printf("\n\n\t1p Kocka: %d \n\n", kocka);
+			if ((naRedu + 1) % 2 == 0) {
+				primjeniKocku(kocka, pok1, zaProvjeru, sizeProv);
 			}
-			}*/
-			/*else {//drugi player dobio mini game
-				kocka = bacanje();
-				printf("\n(2p)Kocka: %d ", kocka);
-				if (naRedu % 2 == 0) {
-					primjeniKocku(kocka, pok1);
-				}
-				else {
-					primjeniKocku(kocka, pok2);
-				}
-			}*/
-			//ocistiKonzolu();
-			//place_players(pok1, pok2);
-			place_playersAnal(pok1);
+			else {
+				printf("\n2p Kocka: %d ", kocka);
+				primjeniKocku(kocka, pok2, zaProvjeru, sizeProv);
+			}
+			/* }
+			else {//drugi player dobio mini game
+					kocka = bacanje();
+					printf("\n(2p)Kocka: %d ", kocka);
+					if (naRedu % 2 == 0) {
+						primjeniKocku(kocka, pok1);
+					}
+					else {
+						primjeniKocku(kocka, pok2);
+					}
+				}*/
+				//ocistiKonzolu();*/
+				//place_players(pok1, );
+			place_playersAnal(pok1, pok2, polje, size);
 			if (pok1->boardPositionX == 9 && pok1->boardPositionY == 9)
+				win = 0;
+			if (pok2->boardPositionX == 9 && pok2->boardPositionY == 9)
 				win = 0;
 			//ocistiKonzolu();
 			//setPlayers(pBoard, pok1, pok2);
@@ -124,14 +128,85 @@ short gameLoopv_2(PLAYER_IG p1, PLAYER_IG* pok1) {//(PLAYER_IG p1, PLAYER_IG p2,
 		if (pok1->boardPositionX == 9 && pok1->boardPositionY == 9) {
 			return 1;
 		}
+		else if (pok2->boardPositionX == 9 && pok2->boardPositionY == 9) {
+			return 2;
+		}
 	}
 }
+/*int testVrijednosti(int m, int n, int* locOfLadSnakeFormatedY, int* locOfLadSnakeFormatedX,int size, int* POKtestVrijednostiY, int* POKtestVrijednostiBold, int* POKtestVrijednostiBoja, int* POKtestVrijednostiX,int* boje) {
+	for (int i = 0; i < size; i++)
+	{
+		if (((m - 1) == *(locOfLadSnakeFormatedX + i)) && (n == *(locOfLadSnakeFormatedY + i))) {
+			POKtestVrijednostiX = locOfLadSnakeFormatedX + i;
+			POKtestVrijednostiY = locOfLadSnakeFormatedY + i;
+			POKtestVrijednostiBoja = boje + (i / 2);
+			if (i % 2 == 1) {
+				*POKtestVrijednostiBold = 1;//bold 1
+			}
+			else {
+				*POKtestVrijednostiBold = 0;//bold 0
+			}
+			return 1;
+		}		
+	}
+	return 0;
+}*/
+int rndNum(DG,GG) {
+	return (DG + (float)rand() / RAND_MAX * (GG - DG));
+}
+int checkingUniqness(int* arr, int io, int jo) {//,6,4
+	
+	int newArr[12] = {0},k=0;
+	for (int i = 0; i < (io*2); i+=2) {// do 6  //do (4) 0 1 2 3
+		{ 
+			int j = 0;
+			newArr[i] =   (*(arr + k * 4 + j) * 10) + (*(arr + k * 4 + j+1));
+			newArr[i+1] = (*(arr + k * 4 + j+2) * 10) + (*(arr + k * 4 + j+3));
+			k++;
+		}
+	}
+/*	printf("Novo nastalo polje \n");
+	for (int i = 0; i < 12; i++) {
+		printf("[%d] ", newArr[i]);//*(q + i*co + j)
+		if (i % 2 == 1) {
+			printf("\n");
+		}
+	}printf("\n");
+	
+	printf("Pocetno polje \n");
+	for (int i = 0; i < io; i++) {
+		for (int j = 0; j < jo; j++) {
+			printf("[%d] ", *(arr + i * jo + j));//*(q + i*co + j)
+		}
+		printf("\n");
+	}
 
+	printf("\n"); printf("\n");
+	printf("\n");*/
+	int x = isUniqueArray(newArr, 12);
+	return x;
+}
+int isUniqueArray(int* polje, int len) {
 
+	int i;
+	int num_set[100] = { 0 };
+	int val;
+
+	for (i = 0; i < len; i++) {
+		val = *(polje + i);
+
+		if (num_set[val] != 0)
+			return 0;
+
+		num_set[val] = 1;
+	}
+
+	return 1; //This returns 1 if the string is unique
+}
 int bacanje() {
 	return ((rand() % 6) + 1);
 }
-void primjeniKocku(int brojKocke, PLAYER_IG* p) {
+void primjeniKocku(int brojKocke, PLAYER_IG* p,int * polje, int size) {
 	int broj = 9;
 	p->boardPositionX += brojKocke;
 	if (p->boardPositionX >= broj && p->boardPositionY >= broj) {
@@ -143,16 +218,71 @@ void primjeniKocku(int brojKocke, PLAYER_IG* p) {
 		p->boardPositionX -= broj + 1;
 		p->boardPositionY++;
 	}
+	int indx[] = { 0,1,2,3,4,5 };
+	// djelovanje zmijajaaaa
+	for (int i = 0; i < 6; i++)
+	{
+		switch (i)
+			{
+			case 0:
+				if (p->boardPositionX == *(polje + (indx[i] * 4) + 0) && p->boardPositionY == *(polje + (indx[i] * 4) + 1))//[Gx][Gy][Rx][Ry][Boja][BoldG][BoldR]
+				{
+					p->boardPositionX = *(polje + (indx[i] * 4) + 2);
+					p->boardPositionY = *(polje + (indx[i] * 4) + 3);
+				}
+				break;
+			case 1:
+				if (p->boardPositionX == *(polje + (indx[i] * 4) + 0) && p->boardPositionY == *(polje + (indx[i] * 4) + 1))//[Gx][Gy][Rx][Ry][Boja][BoldG][BoldR]
+				{
+					p->boardPositionX = *(polje + (indx[i] * 4) + 2);
+					p->boardPositionY = *(polje + (indx[i] * 4) + 3);
+				}
+				break;
+			case 2:
+				if (p->boardPositionX == *(polje + (indx[i] * 4) + 0) && p->boardPositionY == *(polje + (indx[i] * 4) + 1))//[Gx][Gy][Rx][Ry][Boja][BoldG][BoldR]
+				{
+					p->boardPositionX = *(polje + (indx[i] * 4) + 2);
+					p->boardPositionY = *(polje + (indx[i] * 4) + 3);
+				}
+				break;
+			case 3:
+				if (p->boardPositionX == *(polje + (indx[i] * 4) + 0) && p->boardPositionY == *(polje + (indx[i] * 4) + 1))//[Gx][Gy][Rx][Ry][Boja][BoldG][BoldR]
+				{
+					p->boardPositionX = *(polje + (indx[i] * 4) + 2);
+					p->boardPositionY = *(polje + (indx[i] * 4) + 3);
+				}
+				break;
+			case 4:
+				if (p->boardPositionX == *(polje + (indx[i] * 4) + 0) && p->boardPositionY == *(polje + (indx[i] * 4) + 1))//[Gx][Gy][Rx][Ry][Boja][BoldG][BoldR]
+				{
+					p->boardPositionX = *(polje + (indx[i] * 4) + 2);
+					p->boardPositionY = *(polje + (indx[i] * 4) + 3);
+				}
+				break;
+			case 5:
+				if (p->boardPositionX == *(polje + (indx[i] * 4) + 0) && p->boardPositionY == *(polje + (indx[i] * 4) + 1))//[Gx][Gy][Rx][Ry][Boja][BoldG][BoldR]
+				{
+					p->boardPositionX = *(polje + (indx[i] * 4) + 2);
+					p->boardPositionY = *(polje + (indx[i] * 4) + 3);
+				}
+				break;
+			default:
+				break;
+		}
+	}
+	
+	
+
 	if (p->boardPositionY > broj || p->boardPositionY == broj && p->boardPositionX == broj){
 		p->boardPositionX = broj;
 		p->boardPositionY = broj;
 	}
 }
-void place_playersAnal(PLAYER_IG* p1)//, PLAYER_IG* p2)
+void place_playersAnal(PLAYER_IG* p1, PLAYER_IG* p2, int* arr, int size)//, PLAYER_IG* p2)
 {
 	int y, x, m, n = 9;
-	printf("\n\n");
-	for (y = BOARDY; y > 0; y--) {
+	printf("\n\t   ---------------------------------------------------\n");
+		for (y = BOARDY; y > 0; y--) {
 		printf("\t%-2d | ", y);
 		for (m = 10; m > 0; m--) {// m = x os, n= y os
 			/*if (p1->boardPositionX == p2->boardPositionX && p1->boardPositionY == p2->boardPositionY)
@@ -161,42 +291,236 @@ void place_playersAnal(PLAYER_IG* p1)//, PLAYER_IG* p2)
 				printf("&&  ");
 				textColorReset();
 			}*/
-			if ((m-1) == p1->boardPositionX && n == p1->boardPositionY) {
+			int indx[] = { 0,1,2,3,4,5,6};
+			
+			//*(arr + (i*max(j)) +j)
+			int j =0;
+			int i=0;
+			int s0 = *(arr + (indx[i] * 7) + j);
+			int s1 = *(arr + (indx[i] * 7) + j+1);
+			int s2 = *(arr + (indx[i] * 7) + j+2);
+			int s3 = *(arr + (indx[i] * 7) + j+3);
+			int s4 = *(arr + (indx[i] * 7) + j+4);
+			int s5 = *(arr + (indx[i] * 7) + j+5);// j 0 1 2 3 4 5
+			int s6 = *(arr + (indx[i] * 7) + j+6);
+			/// --------------------------------
+			if ((m - 1) == (p1->boardPositionX) && (m - 1) == p2->boardPositionX && n == p2->boardPositionY && n == p1->boardPositionY)// m = x os, n= y os
+			{
 				textcolor(4, 1);
-				printf("%c%c  ", p1->tag, p1->tag);
+				printf("&& ");
 				textColorReset();
+				printf("| ");
 			}
-			/*else if (m - 1 == p2->boardPositionX && n == p2->boardPositionY) {
-				textcolor(5, 0);
-				printf("%c%c  ", p2->tag, p2->tag);
+			else if ((m - 1) == p1->boardPositionX && n == p1->boardPositionY) {
+				textcolor(5, 1);
+				printf("%c%c ", p1->tag, p1->tag);
 				textColorReset();
-			}*/
+				printf("| ");
+			}else if((m - 1) == p2->boardPositionX && n == p2->boardPositionY) {
+				textcolor(4, 1);
+				printf("%c%c ", p2->tag, p2->tag);
+				textColorReset();
+				printf("| ");
+			}
+			else if (i = 0,
+				s0 = *(arr + (indx[i] * 7) + j),
+				s1 = *(arr + (indx[i] * 7) + j + 1),
+				s2 = *(arr + (indx[i] * 7) + j + 2),
+				s3 = *(arr + (indx[i] * 7) + j + 3),
+				s4 = *(arr + (indx[i] * 7) + j + 4),
+				s5 = *(arr + (indx[i] * 7) + j + 5),
+				s6 = *(arr + (indx[i] * 7) + j + 6), (m - 1) == s0 && n == s1) {//0,1 //[Gx][Gy][Rx][Ry][Boja][BoldG][BoldR]
+				textcolor(s4, s5);//4,5
+				printf("%d%d ", s1, s0);//1,0
+				textColorReset(); printf("| ");
+			}
+			else if (i = 0,
+				 s0 = *(arr + (indx[i] * 7) + j),
+				 s1 = *(arr + (indx[i] * 7) + j + 1),
+				 s2 = *(arr + (indx[i] * 7) + j + 2),
+				 s3 = *(arr + (indx[i] * 7) + j + 3),
+				 s4 = *(arr + (indx[i] * 7) + j + 4),
+				 s5 = *(arr + (indx[i] * 7) + j + 5),
+				 s6 = *(arr + (indx[i] * 7) + j + 6),(m - 1) == s2 && n == s3) {//0,1 //[Gx][Gy][Rx][Ry][Boja][BoldG][BoldR]
+				textcolor(s4, s6);//4,5
+				printf("%d%d ", s3, s2);//1,0
+				textColorReset(); printf("| ");
+			}//////////////////////
+			else if (i = 1,
+				s0 = *(arr + (indx[i] * 7) + j),
+				s1 = *(arr + (indx[i] * 7) + j + 1),
+				s2 = *(arr + (indx[i] * 7) + j + 2),
+				s3 = *(arr + (indx[i] * 7) + j + 3),
+				s4 = *(arr + (indx[i] * 7) + j + 4),
+				s5 = *(arr + (indx[i] * 7) + j + 5),
+				s6 = *(arr + (indx[i] * 7) + j + 6), (m - 1) == s0 && n == s1) {//0,1 //[Gx][Gy][Rx][Ry][Boja][BoldG][BoldR]
+				textcolor(s4, s5);//4,5
+				printf("%d%d ", s1, s0);//1,0
+				textColorReset(); printf("| ");
+			}
+			else if (i = 1,
+				s0 = *(arr + (indx[i] * 7) + j),
+				s1 = *(arr + (indx[i] * 7) + j + 1),
+				s2 = *(arr + (indx[i] * 7) + j + 2),
+				s3 = *(arr + (indx[i] * 7) + j + 3),
+				s4 = *(arr + (indx[i] * 7) + j + 4),
+				s5 = *(arr + (indx[i] * 7) + j + 5),
+				s6 = *(arr + (indx[i] * 7) + j + 6), (m - 1) == s2 && n == s3) {//0,1 //[Gx][Gy][Rx][Ry][Boja][BoldG][BoldR]
+				textcolor(s4, s6);//4,5
+				printf("%d%d ", s3, s2);//1,0
+				textColorReset(); printf("| ");
+			}
+			else if (i = 2,
+				s0 = *(arr + (indx[i] * 7) + j),
+				s1 = *(arr + (indx[i] * 7) + j + 1),
+				s2 = *(arr + (indx[i] * 7) + j + 2),
+				s3 = *(arr + (indx[i] * 7) + j + 3),
+				s4 = *(arr + (indx[i] * 7) + j + 4),
+				s5 = *(arr + (indx[i] * 7) + j + 5),
+				s6 = *(arr + (indx[i] * 7) + j + 6), (m - 1) == s0 && n == s1) {//0,1 //[Gx][Gy][Rx][Ry][Boja][BoldG][BoldR]
+				textcolor(s4, s5);//4,5
+				printf("%d%d ", s1, s0);//1,0
+				textColorReset(); printf("| ");
+			}
+			else if (i = 2,
+				s0 = *(arr + (indx[i] * 7) + j),
+				s1 = *(arr + (indx[i] * 7) + j + 1),
+				s2 = *(arr + (indx[i] * 7) + j + 2),
+				s3 = *(arr + (indx[i] * 7) + j + 3),
+				s4 = *(arr + (indx[i] * 7) + j + 4),
+				s5 = *(arr + (indx[i] * 7) + j + 5),
+				s6 = *(arr + (indx[i] * 7) + j + 6), (m - 1) == s2 && n == s3) {//0,1 //[Gx][Gy][Rx][Ry][Boja][BoldG][BoldR]
+				textcolor(s4, s6);//4,5
+				printf("%d%d ", s3, s2);//1,0
+				textColorReset(); printf("| ");
+			}
+			else if (i = 3,
+				s0 = *(arr + (indx[i] * 7) + j),
+				s1 = *(arr + (indx[i] * 7) + j + 1),
+				s2 = *(arr + (indx[i] * 7) + j + 2),
+				s3 = *(arr + (indx[i] * 7) + j + 3),
+				s4 = *(arr + (indx[i] * 7) + j + 4),
+				s5 = *(arr + (indx[i] * 7) + j + 5),
+				s6 = *(arr + (indx[i] * 7) + j + 6), (m - 1) == s0 && n == s1) {//0,1 //[Gx][Gy][Rx][Ry][Boja][BoldG][BoldR]
+				textcolor(s4, s5);//4,5
+				printf("%d%d ", s1, s0);//1,0
+				textColorReset(); printf("| ");
+			}
+			else if (i = 3,
+				s0 = *(arr + (indx[i] * 7) + j),
+				s1 = *(arr + (indx[i] * 7) + j + 1),
+				s2 = *(arr + (indx[i] * 7) + j + 2),
+				s3 = *(arr + (indx[i] * 7) + j + 3),
+				s4 = *(arr + (indx[i] * 7) + j + 4),
+				s5 = *(arr + (indx[i] * 7) + j + 5),
+				s6 = *(arr + (indx[i] * 7) + j + 6), (m - 1) == s2 && n == s3) {//0,1 //[Gx][Gy][Rx][Ry][Boja][BoldG][BoldR]
+				textcolor(s4, s6);//4,5
+				printf("%d%d ", s3, s2);//1,0
+				textColorReset(); printf("| ");
+			}
+			else if (i = 4,
+				s0 = *(arr + (indx[i] * 7) + j),
+				s1 = *(arr + (indx[i] * 7) + j + 1),
+				s2 = *(arr + (indx[i] * 7) + j + 2),
+				s3 = *(arr + (indx[i] * 7) + j + 3),
+				s4 = *(arr + (indx[i] * 7) + j + 4),
+				s5 = *(arr + (indx[i] * 7) + j + 5),
+				s6 = *(arr + (indx[i] * 7) + j + 6), (m - 1) == s0 && n == s1) {//0,1 //[Gx][Gy][Rx][Ry][Boja][BoldG][BoldR]
+				textcolor(s4, s5);//4,5
+				printf("%d%d ", s1, s0);//1,0
+				textColorReset(); printf("| ");
+			}
+			else if (i = 4,
+				s0 = *(arr + (indx[i] * 7) + j),
+				s1 = *(arr + (indx[i] * 7) + j + 1),
+				s2 = *(arr + (indx[i] * 7) + j + 2),
+				s3 = *(arr + (indx[i] * 7) + j + 3),
+				s4 = *(arr + (indx[i] * 7) + j + 4),
+				s5 = *(arr + (indx[i] * 7) + j + 5),
+				s6 = *(arr + (indx[i] * 7) + j + 6), (m - 1) == s2 && n == s3) {//0,1 //[Gx][Gy][Rx][Ry][Boja][BoldG][BoldR]
+				textcolor(s4, s6);//4,5
+				printf("%d%d ", s3, s2);//1,0
+				textColorReset(); printf("| ");
+			}
+			else if (i = 5,
+			s0 = *(arr + (indx[i] * 7) + j),
+			s1 = *(arr + (indx[i] * 7) + j + 1),
+			s2 = *(arr + (indx[i] * 7) + j + 2),
+			s3 = *(arr + (indx[i] * 7) + j + 3),
+			s4 = *(arr + (indx[i] * 7) + j + 4),
+			s5 = *(arr + (indx[i] * 7) + j + 5),
+			s6 = *(arr + (indx[i] * 7) + j + 6), (m - 1) == s0 && n == s1) {//0,1 //[Gx][Gy][Rx][Ry][Boja][BoldG][BoldR]
+			textcolor(s4, s5);//4,5
+			printf("%d%d ", s1, s0);//1,0
+			textColorReset(); printf("| ");
+			}
+			else if (i = 5,
+			s0 = *(arr + (indx[i] * 7) + j),
+			s1 = *(arr + (indx[i] * 7) + j + 1),
+			s2 = *(arr + (indx[i] * 7) + j + 2),
+			s3 = *(arr + (indx[i] * 7) + j + 3),
+			s4 = *(arr + (indx[i] * 7) + j + 4),
+			s5 = *(arr + (indx[i] * 7) + j + 5),
+			s6 = *(arr + (indx[i] * 7) + j + 6), (m - 1) == s2 && n == s3) {//0,1 //[Gx][Gy][Rx][Ry][Boja][BoldG][BoldR]
+			textcolor(s4, s6);//4,5
+			printf("%d%d ", s3, s2);//1,0
+			textColorReset(); printf("| ");
+			}
+			else if (i = 6,
+			s0 = *(arr + (indx[i] * 7) + j),
+			s1 = *(arr + (indx[i] * 7) + j + 1),
+			s2 = *(arr + (indx[i] * 7) + j + 2),
+			s3 = *(arr + (indx[i] * 7) + j + 3),
+			s4 = *(arr + (indx[i] * 7) + j + 4),
+			s5 = *(arr + (indx[i] * 7) + j + 5),
+			s6 = *(arr + (indx[i] * 7) + j + 6), (m - 1) == s0 && n == s1) {//0,1 //[Gx][Gy][Rx][Ry][Boja][BoldG][BoldR]
+			textcolor(s4, s5);//4,5
+			printf("%d%d ", s1, s0);//1,0
+			textColorReset(); printf("| ");
+			}
+			else if (i = 6,
+			s0 = *(arr + (indx[i] * 7) + j),
+			s1 = *(arr + (indx[i] * 7) + j + 1),
+			s2 = *(arr + (indx[i] * 7) + j + 2),
+			s3 = *(arr + (indx[i] * 7) + j + 3),
+			s4 = *(arr + (indx[i] * 7) + j + 4),
+			s5 = *(arr + (indx[i] * 7) + j + 5),
+			s6 = *(arr + (indx[i] * 7) + j + 6), (m - 1) == s2 && n == s3) {//0,1 //[Gx][Gy][Rx][Ry][Boja][BoldG][BoldR]
+			textcolor(s4, s6);//4,5
+			printf("%d%d  ", s3, s2);//1,0
+			textColorReset();
+			}
 			else {
-				printf("%d%d  ", n,m-1);
+				printf("%d%d ", n, m - 1);
+				textColorReset(); 
+				printf("| ");
 			}
 		}
 		n--;
 		printf("\n");
 		if (y != 1)
 		{
-			printf("\t   |\n");
+			printf("\t   |-------------------------------------------------|\n");
 		}
 
 	}
-	printf("\t     ");
-	for (x = 0; x < BOARDX; x++) {// predzadnji red crte
-		printf("__  ");
-	}	
-	printf("\n");
-
-	printf("\t     ");
-	for (x = 10; x > 0; x--)//zadnji red brojke
-	{
-		printf("%2d  ", x);
+	printf("\t   ");
+	for (x = 0; x < BOARDX; x++) { // predzadnji red crte
+		if (x == 0) {
+			printf("|");
+		}
+		printf("----");
+		if (x == 9) {
+			printf("---------|");
+		}
 	}
 	printf("\n");
-}
 
+	printf("\t   | ");
+	for (x = 10; x > 0; x--)//zadnji red brojke
+		printf("%2d | ", x);
+	printf("\n");
+}
 
 void textColorReset() {
 		printf("\033[0m");
@@ -262,6 +586,7 @@ void textcolor(int color, int bold) {
 				printf("\033[1;37m");
 			}
 		default:
+			printf("\033[0m");
 			break;
 		}
 }
@@ -626,4 +951,6 @@ void* pretraziClanove(CLAN* const polje) {
 	// vracamo NULL u slucaju da ne nademo nijednog clana s tim id
 	return NULL;
 }*/
+
+
 

@@ -1,3 +1,15 @@
-﻿  func.c
-C:\Users\Marko\Desktop\ProgProject\Igra-Snakes-Ladders\Igra-Snakes-Ladders\Igra-Snakes-Ladders\ProjektniKaravla\func.c(128): warning C4715: 'gameLoopv_2': not all control paths return a value
-  ProjektniKaravla.vcxproj -> C:\Users\Marko\Desktop\ProgProject\Igra-Snakes-Ladders\Igra-Snakes-Ladders\Igra-Snakes-Ladders\ProjektniKaravla\x64\Debug\ProjektniKaravla.exe
+﻿  Izbornik.c
+C:\Users\Marko\Desktop\progProjektKOstur\Igra-Snakes-Ladders-main\Igra-Snakes-Ladders\Igra-Snakes-Ladders\Igra-Snakes-Ladders\ProjektniKaravla\Izbornik.c(83,44): warning C4047: 'function': 'int *' differs in levels of indirection from 'int [6][4]'
+C:\Users\Marko\Desktop\progProjektKOstur\Igra-Snakes-Ladders-main\Igra-Snakes-Ladders\Igra-Snakes-Ladders\Igra-Snakes-Ladders\ProjektniKaravla\Izbornik.c(83,28): warning C4024: 'checkingUniqness': different types for formal and actual parameter 1
+C:\Users\Marko\Desktop\progProjektKOstur\Igra-Snakes-Ladders-main\Igra-Snakes-Ladders\Igra-Snakes-Ladders\Igra-Snakes-Ladders\ProjektniKaravla\Izbornik.c(97,62): warning C4047: 'function': 'int *' differs in levels of indirection from 'int [6][7]'
+C:\Users\Marko\Desktop\progProjektKOstur\Igra-Snakes-Ladders-main\Igra-Snakes-Ladders\Igra-Snakes-Ladders\Igra-Snakes-Ladders\ProjektniKaravla\Izbornik.c(97,49): warning C4024: 'gameLoopv_2': different types for formal and actual parameter 5
+C:\Users\Marko\Desktop\progProjektKOstur\Igra-Snakes-Ladders-main\Igra-Snakes-Ladders\Igra-Snakes-Ladders\Igra-Snakes-Ladders\ProjektniKaravla\Izbornik.c(97,69): warning C4020: 'gameLoopv_2': too many actual parameters
+  func.c
+C:\Users\Marko\Desktop\progProjektKOstur\Igra-Snakes-Ladders-main\Igra-Snakes-Ladders\Igra-Snakes-Ladders\Igra-Snakes-Ladders\ProjektniKaravla\func.c(67,132): warning C4029: declared formal parameter list different from definition
+C:\Users\Marko\Desktop\progProjektKOstur\Igra-Snakes-Ladders-main\Igra-Snakes-Ladders\Igra-Snakes-Ladders\Igra-Snakes-Ladders\ProjektniKaravla\func.c(101,32): warning C4020: 'primjeniKocku': too many actual parameters
+C:\Users\Marko\Desktop\progProjektKOstur\Igra-Snakes-Ladders-main\Igra-Snakes-Ladders\Igra-Snakes-Ladders\Igra-Snakes-Ladders\ProjektniKaravla\func.c(105,32): warning C4020: 'primjeniKocku': too many actual parameters
+C:\Users\Marko\Desktop\progProjektKOstur\Igra-Snakes-Ladders-main\Igra-Snakes-Ladders\Igra-Snakes-Ladders\Igra-Snakes-Ladders\ProjektniKaravla\func.c(155,52): warning C4244: 'return': conversion from 'float' to 'int', possible loss of data
+C:\Users\Marko\Desktop\progProjektKOstur\Igra-Snakes-Ladders-main\Igra-Snakes-Ladders\Igra-Snakes-Ladders\Igra-Snakes-Ladders\ProjektniKaravla\func.c(209,71): warning C4029: declared formal parameter list different from definition
+  Generating Code...
+C:\Users\Marko\Desktop\progProjektKOstur\Igra-Snakes-Ladders-main\Igra-Snakes-Ladders\Igra-Snakes-Ladders\Igra-Snakes-Ladders\ProjektniKaravla\func.c(135): warning C4715: 'gameLoopv_2': not all control paths return a value
+  ProjektniKaravla.vcxproj -> C:\Users\Marko\Desktop\progProjektKOstur\Igra-Snakes-Ladders-main\Igra-Snakes-Ladders\Igra-Snakes-Ladders\Igra-Snakes-Ladders\ProjektniKaravla\x64\Debug\ProjektniKaravla.exe
