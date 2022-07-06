@@ -1,2 +1,8 @@
 ﻿  func.c
-LINK : fatal error LNK1168: cannot open C:\Users\student\Desktop\RepoM\Igra-Snakes-Ladders\ProjektniKaravla\x64\Debug\ProjektniKaravla.exe for writing
+  Izbornik.c
+  LeaderBoard.c
+  main.c
+  Generating Code...
+C:\Users\Marko\Desktop\ProgProject\Igra-Snakes-Ladders-main\Igra-Snakes-Ladders\Igra-Snakes-Ladders\Igra-Snakes-Ladders\ProjektniKaravla\func.c(128): warning C4715: 'gameLoopv_2': not all control paths return a value
+  LINK : C:\Users\Marko\Desktop\ProgProject\Igra-Snakes-Ladders-main\Igra-Snakes-Ladders\Igra-Snakes-Ladders\Igra-Snakes-Ladders\ProjektniKaravla\x64\Debug\ProjektniKaravla.exe not found or not built by the last incremental link; performing full link
+  ProjektniKaravla.vcxproj -> C:\Users\Marko\Desktop\ProgProject\Igra-Snakes-Ladders-main\Igra-Snakes-Ladders\Igra-Snakes-Ladders\Igra-Snakes-Ladders\ProjektniKaravla\x64\Debug\ProjektniKaravla.exe

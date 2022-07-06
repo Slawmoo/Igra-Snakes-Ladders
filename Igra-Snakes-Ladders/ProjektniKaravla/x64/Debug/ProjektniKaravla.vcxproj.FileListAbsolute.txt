@@ -1,1 +1,4 @@
 C:\Users\student\Desktop\RepoM\Igra-Snakes-Ladders\ProjektniKaravla\x64\Debug\ProjektniKaravla.exe
+C:\Users\Marko\source\repos\Igra-Snakes-Ladders\Igra-Snakes-Ladders\Igra-Snakes-Ladders\ProjektniKaravla\x64\Debug\ProjektniKaravla.exe
+C:\Users\Marko\Desktop\ProgProject\Igra-Snakes-Ladders\Igra-Snakes-Ladders\Igra-Snakes-Ladders\ProjektniKaravla\x64\Debug\ProjektniKaravla.exe
+C:\Users\Marko\Desktop\ProgProject\Igra-Snakes-Ladders-main\Igra-Snakes-Ladders\Igra-Snakes-Ladders\Igra-Snakes-Ladders\ProjektniKaravla\x64\Debug\ProjektniKaravla.exe
